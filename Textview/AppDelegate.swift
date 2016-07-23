@@ -1,9 +1,4 @@
-//
-//  AppDelegate.swift
-//  Textview
-//
-//  Created by Kauthar Al-Mottahar on 7/16/16.
-//  Copyright © 2016 Kauthar Al-Mottahar. All rights reserved.
+
 //
 
 import UIKit

@@ -1,25 +1,38 @@
-//
-//  ViewController.swift
-//  Textview
-//
-//  Created by Kauthar Al-Mottahar on 7/16/16.
-//  Copyright © 2016 Kauthar Al-Mottahar. All rights reserved.
-//
+
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextViewDelegate {
 
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var messageTextView: UITextView!
+    @IBOutlet weak var parent: UIView!
+    let messageTextViewMaxHeight: CGFloat = 100
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.messageTextView.delegate = self
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func Reset(sender: AnyObject) {
+        messageTextView.text = ""
+        messageTextView.frame.size.height = messageTextView.contentSize.height
+        messageTextView.scrollEnabled = false
+        self.parent.layoutIfNeeded()
     }
-
+    
+    func textViewDidChange(textView: UITextView) {
+        if textView.frame.size.height >= self.messageTextViewMaxHeight {
+            
+            textView.scrollEnabled = true
+            
+        } else {
+            textView.scrollEnabled = false
+            textView.frame.size.height = textView.contentSize.height
+        }
+    }
 
 }
 
